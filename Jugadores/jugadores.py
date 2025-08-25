@@ -1,11 +1,22 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
-# Inicializamos la app
+# Iniciar
 app = FastAPI(title="Microservicio Jugadores - UDG Tonalá")
 
-# Modelo de datos
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# DATOS
 class Jugador(BaseModel):
     id: int
     nombre: str
@@ -13,7 +24,7 @@ class Jugador(BaseModel):
     dorsal: int
     goles: int = 0
 
-# "Base de datos" en memoria
+# Base de datos" en memoria
 jugadores = []
 
 # ------------------ ENDPOINTS ------------------ #
