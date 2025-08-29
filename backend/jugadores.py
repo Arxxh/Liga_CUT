@@ -1,22 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
 
-# Iniciar
-app = FastAPI(title="Microservicio Jugadores - UDG Tonalá")
+router = APIRouter()
 
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-# DATOS
+# Modelo de datos
 class Jugador(BaseModel):
     id: int
     nombre: str
@@ -24,23 +12,23 @@ class Jugador(BaseModel):
     dorsal: int
     goles: int = 0
 
-# Base de datos" en memoria
+# "Base de datos" en memoria
 jugadores = []
 
 # ------------------ ENDPOINTS ------------------ #
 
-@app.get("/jugadores", response_model=List[Jugador])
+@router.get("/", response_model=List[Jugador])
 def listar_jugadores():
     return jugadores
 
-@app.get("/jugadores/{jugador_id}", response_model=Jugador)
+@router.get("/{jugador_id}", response_model=Jugador)
 def obtener_jugador(jugador_id: int):
     for j in jugadores:
         if j.id == jugador_id:
             return j
     raise HTTPException(status_code=404, detail="Jugador no encontrado")
 
-@app.post("/jugadores", response_model=Jugador)
+@router.post("/", response_model=Jugador)
 def agregar_jugador(jugador: Jugador):
     for j in jugadores:
         if j.id == jugador.id:
@@ -50,7 +38,7 @@ def agregar_jugador(jugador: Jugador):
     jugadores.append(jugador)
     return jugador
 
-@app.put("/jugadores/{jugador_id}", response_model=Jugador)
+@router.put("/{jugador_id}", response_model=Jugador)
 def actualizar_jugador(jugador_id: int, datos: Jugador):
     for i, j in enumerate(jugadores):
         if j.id == jugador_id:
@@ -58,7 +46,7 @@ def actualizar_jugador(jugador_id: int, datos: Jugador):
             return datos
     raise HTTPException(status_code=404, detail="Jugador no encontrado")
 
-@app.delete("/jugadores/{jugador_id}")
+@router.delete("/{jugador_id}")
 def eliminar_jugador(jugador_id: int):
     for i, j in enumerate(jugadores):
         if j.id == jugador_id:
@@ -66,7 +54,7 @@ def eliminar_jugador(jugador_id: int):
             return {"message": "Jugador eliminado"}
     raise HTTPException(status_code=404, detail="Jugador no encontrado")
 
-@app.post("/jugadores/{jugador_id}/gol")
+@router.post("/{jugador_id}/gol")
 def registrar_gol(jugador_id: int):
     for j in jugadores:
         if j.id == jugador_id:
