@@ -4,7 +4,6 @@ from typing import List
 
 router = APIRouter()
 
-# Modelo de datos
 class Jugador(BaseModel):
     id: int
     nombre: str
@@ -12,7 +11,6 @@ class Jugador(BaseModel):
     dorsal: int
     goles: int = 0
 
-# "Base de datos" en memoria
 jugadores = []
 
 # ------------------ ENDPOINTS ------------------ #

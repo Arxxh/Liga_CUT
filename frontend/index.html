@@ -1,39 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>JUGADORES UDG</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <title>Liga UDG Tonalá</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen p-8">
-    <h1 class="text-3x1 font-bold text-center mb-6">Jugadores UDG Tonala</h1>
-    <!-- Formulario -->
 
-    <div class="max-w-lg mx-auto bg-white p-6 rounded-2x1 shadow-lg mb-8 ">
-        <h2 class="text-x1 font-semibold mb-4">Agregar Jugador</h2>
-        <form id="formJugador" class="space-y-3">
-            <input type="number" id="id" placeholder="ID" class="w-full border rounded p-2">
-            <input type="text" id="nombre" placeholder="Nombre" class="w-full border rounded p-2">
-            <input type="text" id="posicion" placeholder="Posición" class="w-full border rounded p-2">
-            <input type="number" id="dorsal" placeholder="Dorsal" class="w-full border rounded p-2">
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Agregar</button>
-        </form>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between bg-white shadow px-4 py-2 mb-6 rounded-xl">
+    <!-- Botón hamburguesa -->
+    <div class="relative">
+      <button id="menuBtn" class="focus:outline-none">
+        <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <!-- Menú desplegable -->
+      <div id="menu" class="hidden absolute mt-2 w-40 bg-white rounded-xl shadow-lg z-10">
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Calendario</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Conócenos</a>
+      </div>
     </div>
 
-    <div class="max-w-2x1 mx-auto bg-white p-6 rounded-2x1 shadow-lg">
+    <!-- Logo UDG a la derecha -->
+    <div>
+      <img src="assets/logo-udg-png-blanco-y-negro_orig.png" 
+           alt="Logo UDG" class="h-12">
+    </div>
+  </nav>
+
+  <h1 class="text-3xl font-bold text-center mb-8">Liga UDG Tonalá</h1>
+
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-center gap-3 mb-6">
+      <button id="tabBtnJugadores"
+              data-tab="jugadores"
+              class="px-4 py-2 rounded-full border bg-white shadow hover:bg-gray-50 font-semibold">
+        Jugadores
+      </button>
+      <button id="tabBtnEquipos"
+              data-tab="equipos"
+              class="px-4 py-2 rounded-full border bg-white shadow hover:bg-gray-50">
+        Equipos
+      </button>
+    </div>
+
+    <!-- Contenido: Jugadores -->
+    <section id="tab-jugadores">
+      <!-- Formulario Jugadores -->
+      <div class="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow mb-8">
+        <h2 class="text-xl font-semibold mb-4">Agregar Jugador</h2>
+        <form id="formJugador" class="space-y-3">
+          <input type="number" id="id" placeholder="ID" class="w-full border rounded p-2" />
+          <input type="text" id="nombre" placeholder="Nombre" class="w-full border rounded p-2" />
+          <input type="text" id="posicion" placeholder="Posición" class="w-full border rounded p-2" />
+          <input type="number" id="dorsal" placeholder="Dorsal" class="w-full border rounded p-2" />
+          <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+            Agregar
+          </button>
+        </form>
+      </div>
+
+      <!-- Lista Jugadores -->
+      <div class="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow">
         <h2 class="text-xl font-semibold mb-4">Lista de Jugadores</h2>
         <table class="w-full text-left border-collapse">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="p-2">ID</th>
-                    <th class="p-2">Nombre</th>
-                    <th class="p-2">Posición</th>
-                    <th class="p-2">Dorsal</th>
-                </tr>
-            </thead>
-            <tbody id="tablaJugadores"></tbody>
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="p-2">ID</th>
+              <th class="p-2">Nombre</th>
+              <th class="p-2">Posición</th>
+              <th class="p-2">Dorsal</th>
+            </tr>
+          </thead>
+          <tbody id="tablaJugadores"></tbody>
         </table>
-    </div>
-    <script src="script.js"></script>
+      </div>
+    </section>
+
+    <!-- Contenido: Equipos -->
+    <section id="tab-equipos" class="hidden">
+      <div class="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow mb-8">
+        <h2 class="text-xl font-semibold mb-4">Agregar Equipo</h2>
+        <form id="formEquipo" class="space-y-3">
+          <input type="number" id="idEquipo" placeholder="ID Equipo" class="w-full border rounded p-2" />
+          <input type="text" id="nombreEquipo" placeholder="Nombre del Equipo" class="w-full border rounded p-2" />
+          <input type="number" id="numJugadores" placeholder="Número de Jugadores" class="w-full border rounded p-2" />
+          <input type="text" id="logo" placeholder="URL del Logo" class="w-full border rounded p-2" />
+          <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">
+            Agregar Equipo
+          </button>
+        </form>
+      </div>
+
+      <!-- Lista Equipos -->
+      <div class="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-xl font-semibold mb-4">Lista de Equipos</h2>
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="p-2">ID</th>
+              <th class="p-2">Nombre</th>
+              <th class="p-2"># Jugadores</th>
+              <th class="p-2">Logo</th>
+            </tr>
+          </thead>
+          <tbody id="tablaEquipos"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Script para mostrar/ocultar menú hamburguesa
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('menu').classList.toggle('hidden');
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
