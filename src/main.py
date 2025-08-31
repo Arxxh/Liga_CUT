@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from api import register_routers
+
+
+
 app = FastAPI(
     description="Documentacion automatica de mi microservicio para la autenticacion de usuario y permisos",
     title="Permisos_Microservicio_Por_Diego: AUTH:Service",
@@ -29,3 +33,4 @@ app.add_middleware(
 
 # importacion de rutas (uso de api router)
 
+register_routers(app)
