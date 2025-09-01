@@ -1,7 +1,7 @@
-package com.proyecto.ligacut.controlador;
+package com.proyecto.Liga_CUT.controlador;
 
-import com.proyecto.ligacut.dto.PosicionDTO;
-import com.proyecto.ligacut.servicio.ServicioTabla;
+import com.proyecto.Liga_CUT.dto.PosicionDTO;
+import com.proyecto.Liga_CUT.servicio.ServicioTabla;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

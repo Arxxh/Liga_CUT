@@ -32,7 +32,7 @@ public class PosicionDTO {
         this.puntos = puntos;
     }
     
-    // Getters y Setters
+    // Encapsulamiento (getters y setters)
     public Long getEquipoId() { return equipoId; }
     public void setEquipoId(Long equipoId) { this.equipoId = equipoId; }
     public String getNombre() { return nombre; }

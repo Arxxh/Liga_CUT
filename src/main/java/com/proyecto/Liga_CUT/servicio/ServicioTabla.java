@@ -1,12 +1,11 @@
 package com.proyecto.Liga_CUT.servicio;
 
-import com.proyecto.ligacut.dto.PosicionDTO;
+import com.proyecto.Liga_CUT.dto.PosicionDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
