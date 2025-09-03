@@ -1,72 +1,54 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:liga/core/app_colors.dart';
+import 'package:liga/core/custom_widgets/custom_appbar.dart';
+import 'package:liga/core/custom_widgets/custom_drawer.dart';
+import 'package:liga/core/custom_widgets/custom_navbar.dart';
+import 'package:liga/screens/inicio_screen.dart';
+import 'package:liga/screens/partidos_screen.dart';
+import 'package:liga/screens/equipos_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+// Por tu cara se que quieres 50 mil litros de fentanilo (〃￣︶￣)人(￣︶￣〃) //
+// Aqui solo estableszco las pantallas constantes para que se vea como Sonos y la animacion //
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeigth = MediaQuery.of(context).size.height;
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+
+  final List<Widget> screens = const [
+    InicioScreen(),
+    PartidosScreen(),
+    EquiposScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundPrimary,
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(15),
-          ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: AppBar(
-              backgroundColor: AppColors.appbarPrimary.withOpacity(0.1),
-              elevation: 0,
-              title: const Text(
-                "Inicio",
-                style: TextStyle(color: Colors.black),
-              ),
+      appBar: const CustomAppbar(title: "Liga de Fútbol"),
+      drawer: const CustomDrawer(),
+      body: Stack(
+        children: List.generate(screens.length, (index) {
+          return AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: selectedIndex == index ? 1 : 0,
+            child: Offstage(
+              offstage: selectedIndex != index,
+              child: screens[index],
             ),
-          ),
-        ),
+          );
+        }),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFFFFFFF), Color(0xFF000000)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: screenWidth * 0.8,
-                padding: const EdgeInsets.all(16),
-                child: const Text(
-                  "App de la liga de CUT",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              SizedBox(height: screenHeigth * 0.05),
-              SizedBox(
-                width: screenWidth * 0.6,
-                height: screenHeigth * 0.08,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("Botón"),
-                ),
-              ),
-            ],
-          ),
-        ),
+      bottomNavigationBar: CustomNavbar(
+        selectedIndex: selectedIndex,
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
       ),
     );
   }
