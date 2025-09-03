@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Estas Cards corresponden a la de las noticias de Inicio_Screen {{{(>_<)}}} //
+
 class NoticiasCard extends StatelessWidget {
   final String titulo;
   final String descripcion;

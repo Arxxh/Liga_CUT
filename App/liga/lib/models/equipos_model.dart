@@ -1,7 +1,5 @@
-/* Aqui es el modelo o creador de donde va a venir la info de la BD y aparte
-   es el convertidor y desconvertidor de JSON ~~>_<~~ */
-
 class Equipo {
+  final int? id;
   final String nombre;
   final String directorTecnico;
   int partidosJugados;
@@ -13,6 +11,7 @@ class Equipo {
   int puntos;
 
   Equipo({
+    this.id,
     required this.nombre,
     required this.directorTecnico,
     this.partidosJugados = 0,
@@ -24,9 +23,11 @@ class Equipo {
     this.puntos = 0,
   });
 
-  // Convertir a JSON //
+  // Convertir a JSON (para enviar a FastAPI) //
+
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'nombre': nombre,
       'director_tecnico': directorTecnico,
       'partidos_jugados': partidosJugados,
@@ -39,9 +40,11 @@ class Equipo {
     };
   }
 
-  // Crear desde JSON //
+  // Crear desde JSON (cuando viene del backend)
+
   factory Equipo.fromJson(Map<String, dynamic> json) {
     return Equipo(
+      id: json['id'],
       nombre: json['nombre'],
       directorTecnico: json['director_tecnico'],
       partidosJugados: json['partidos_jugados'] ?? 0,

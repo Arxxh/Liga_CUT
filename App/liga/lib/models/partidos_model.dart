@@ -2,6 +2,7 @@
    es el convertidor y desconvertidor de JSON ~~>_<~~ */
 
 class Partido {
+  final int? id;
   final String equipoA;
   final String equipoB;
   final String fecha;
@@ -9,6 +10,7 @@ class Partido {
   final String estadio;
 
   Partido({
+    this.id,
     required this.equipoA,
     required this.equipoB,
     required this.fecha,
@@ -16,22 +18,24 @@ class Partido {
     required this.estadio,
   });
 
-  // Convertir a JSON //
+  // Convertir a JSON (para enviar a FastAPI) //
   Map<String, dynamic> toJson() {
     return {
-      'equipoA': equipoA,
-      'equipoB': equipoB,
+      'id': id,
+      'equipo_a': equipoA,
+      'equipo_b': equipoB,
       'fecha': fecha,
       'hora': hora,
       'estadio': estadio,
     };
   }
 
-  // Convertir desde JSON //
+  // Crear objeto desde JSON (cuando viene de FastAPI) //
   factory Partido.fromJson(Map<String, dynamic> json) {
     return Partido(
-      equipoA: json['equipoA'],
-      equipoB: json['equipoB'],
+      id: json['id'],
+      equipoA: json['equipo_a'],
+      equipoB: json['equipo_b'],
       fecha: json['fecha'],
       hora: json['hora'],
       estadio: json['estadio'],
