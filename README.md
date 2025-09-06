@@ -11,6 +11,10 @@ Este es un proyecto basado en 4 microservicios o mas para un sistema o aplicacio
 registro y acceso para usuarios, generacion de token JWT, Rutas Auth 
 y Rutas para el panel de permisos
 
+- Hasheo de contraseñas: passlib
+- Manejo asincrono
+- tokens: Jose-JWT
+
 
 
 
