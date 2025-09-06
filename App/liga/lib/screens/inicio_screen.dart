@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:liga/core/custom_widgets/banner_principal.dart';
 import 'package:liga/core/custom_widgets/custom_banner.dart';
-import 'package:liga/core/custom_widgets/prox_partidos_card.dart';
-import 'package:liga/core/custom_widgets/noticias_card.dart';
+import 'package:liga/core/custom_widgets/custom_sliver_appbar.dart';
+import 'package:liga/core/custom_widgets/sections/noticias_section.dart';
+import 'package:liga/core/custom_widgets/sections/proximos_partidos_section.dart';
 
 // El inicio Screen la mejor idea que he tenido en años dios mio como se puede ser tan bueno []~(￣▽￣)~* //
 
@@ -10,46 +12,27 @@ class InicioScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Bienvenido a la Liga",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            CustomBanner(),
-            const SizedBox(height: 20),
-            const Text(
-              "Próximos partidos",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            const SizedBox(height: 10),
-            const ProxPartidosCard(),
-            const SizedBox(height: 20),
-            Text(
-              "Noticias recientes",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Theme.of(context).textTheme.bodyLarge?.color,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Column(
-              children: List.generate(8, (index) {
-                return NoticiasCard(
-                  titulo: "Noticia $index",
-                  descripcion: "Descripción de la noticia $index...",
-                );
-              }),
-            ),
-          ],
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return CustomScrollView(
+      slivers: [
+        const CustomSliverAppbar(title: "Inicio"),
+        SliverToBoxAdapter(
+          child: BannerPrincipal(
+            width: screenWidth,
+            height: screenHeight * 0.48,
+          ),
         ),
-      ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: CustomBanner(),
+          ),
+        ),
+        const SliverToBoxAdapter(child: ProximosPartidosSection()),
+        const NoticiasSection(),
+      ],
     );
   }
 }

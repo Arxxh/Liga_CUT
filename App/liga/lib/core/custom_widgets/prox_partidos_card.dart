@@ -30,7 +30,7 @@ class ProxPartidosCard extends StatelessWidget {
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFF00FF3C), Color(0xFF00AAFF)],
+                colors: [Color(0xFFFF0000), Color(0xFF001EFF)],
               ),
             ),
             child: Center(

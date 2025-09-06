@@ -15,18 +15,29 @@ class CustomBanner extends StatelessWidget {
     {"title": "Noticias de la liga", "image": "assets/images/Noticias.jpg"},
   ];
 
+  final PageController _pageController = PageController(viewportFraction: 0.90);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 250,
       child: PageView.builder(
+        controller: _pageController,
         itemCount: banners.length,
         itemBuilder: (context, index) {
           final banner = banners[index];
+          EdgeInsets margin;
+          if (index == 0) {
+            margin = const EdgeInsets.only(left: 0, right: 6);
+          } else if (index == banners.length - 1) {
+            margin = const EdgeInsets.only(left: 6, right: 0);
+          } else {
+            margin = const EdgeInsets.symmetric(horizontal: 6);
+          }
           return Card(
-            margin: const EdgeInsets.all(12),
+            margin: margin,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
             ),
             clipBehavior: Clip.antiAlias,
             child: Stack(
@@ -36,7 +47,7 @@ class CustomBanner extends StatelessWidget {
                 Container(
                   alignment: Alignment.bottomLeft,
                   padding: const EdgeInsets.all(12),
-                  color: Colors.black45,
+                  color: Colors.black38,
                   child: Text(
                     banner["title"]!,
                     style: const TextStyle(

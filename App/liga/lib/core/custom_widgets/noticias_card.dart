@@ -14,13 +14,18 @@ class NoticiasCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox(
       width: double.infinity,
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 6),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: const BorderSide(color: Color(0xFF0056A4), width: 1.5),
+        ),
         elevation: 4,
-        color: Theme.of(context).cardColor,
+        color: theme.cardColor,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -28,19 +33,12 @@ class NoticiasCard extends StatelessWidget {
             children: [
               Text(
                 titulo,
-                style: TextStyle(
+                style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                descripcion,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                ),
-              ),
+              Text(descripcion, style: theme.textTheme.bodyMedium),
             ],
           ),
         ),

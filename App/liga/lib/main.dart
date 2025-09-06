@@ -8,10 +8,7 @@ import 'package:liga/theme/theme_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Carga la preferencia del tema antes de iniciar la app //
   await themeManager.loadTheme();
-
   runApp(const MainApp());
 }
 
@@ -39,11 +36,8 @@ class _MainAppState extends State<MainApp> {
 
   void _onThemeChange() async {
     if (!mounted) return;
-
     setState(() => _showOverlay = true);
-
     await Future.delayed(const Duration(milliseconds: 200));
-
     if (!mounted) return;
     setState(() => _showOverlay = false);
   }

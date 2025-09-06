@@ -5,12 +5,13 @@ import 'package:liga/core/app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
+  scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.appbarPrimary,
+    backgroundColor: Colors.white,
     elevation: 0,
-    iconTheme: IconThemeData(color: Colors.white),
+    iconTheme: IconThemeData(color: Colors.black),
     titleTextStyle: TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
