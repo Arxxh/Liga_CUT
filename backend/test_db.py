@@ -11,7 +11,7 @@ try:
        
     )
     cursor = conn.cursor()
-    print("✅ Conexión a PostgreSQL exitosa")
+    print(" Conexión a PostgreSQL exitosa")
 except psycopg2.Error as e:
-    print("❌ Error al conectar a PostgreSQL")
+    print(" Error al conectar a PostgreSQL")
     print(e)

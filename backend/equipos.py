@@ -16,7 +16,7 @@ class Equipo(BaseModel):
     logo: str
 
     class Config:
-        orm_mode = True  # <-- Esto lo agregamos para que funcione bien con SQLAlchemy
+        from_attributes = True
 
 # Dependencia para obtener la sesión
 def get_db():
