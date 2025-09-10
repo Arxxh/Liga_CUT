@@ -8,6 +8,7 @@ from jose import jwt, JWTError # token
 from passlib.context import CryptContext # hash
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from exceptions import UserAlreadyExistsError, InvalidCredentialsError, WeakPasswordError
 
 from auth.models import User
 
@@ -30,12 +31,12 @@ def normalize_email(email: str) -> str:
 def validate_password(password: str) -> None:
     """
     Aplica reglas mínimas de seguridad a las contraseñas.
-    Lanza ValueError si no cumple.
+    Lanza WeakPasswordError si no cumple.
     """
     if len(password) < 8:
-        raise ValueError("La contraseña debe tener al menos 8 caracteres")
+        raise WeakPasswordError("La contraseña debe tener al menos 8 caracteres")
     if password.isnumeric():
-        raise ValueError("La contraseña no puede ser solo números")
+        raise WeakPasswordError("La contraseña no puede ser solo números")
     # aquí puedes agregar más reglas (mayúsculas, símbolos, etc.)
 
 """
@@ -78,7 +79,11 @@ async def get_user_by_email(db: AsyncSession, email: str) -> Optional[User]:
 
 # helper de auth
 async def create_user(db: AsyncSession, email: str, password: str) -> User:
+    # validaciones
+    if await get_user_by_email(db, email):
+        raise UserAlreadyExistsError()
     validate_password(password)
+    # crear usuario
     user = User(email=normalize_email(email), hashed_password=hash_password(password))
     db.add(user)
     await db.commit()
@@ -88,12 +93,8 @@ async def create_user(db: AsyncSession, email: str, password: str) -> User:
 # helper de auth 
 async def authenticate_user(db: AsyncSession, email: str, password: str) -> Optional[User]:
     user = await get_user_by_email(db, email)
-    if not user:
-        return None
-    if not verify_password(password, user.hashed_password):
-        return None
-    if not user.is_active:
-        return None
+    if not user or not verify_password(password, user.hashed_password) or not user.is_active:
+        raise InvalidCredentialsError()
     return user
 
 # helper de auth
