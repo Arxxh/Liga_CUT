@@ -5,6 +5,6 @@ router = APIRouter(
     tags=["panel"],
 )
 
-@router.get("/dashboard")
-async def dashboard():
-    return {"message": "Admin dashboard endpoint"}
+@router.get("/ping")
+def ping():
+    return {"ok": True, "service": "api", "version": "0.1.0"}
