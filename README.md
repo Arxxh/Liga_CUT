@@ -18,9 +18,9 @@ y Rutas para el panel de permisos
 
 # Endpoints para usuarios
 
-- login: ingreso de un usuario a la app a partir de su correo y contraseña
-- register: registro de correo normalizado y contraseña de minimo 8 caracteres
-- token: este endpoint es para proteger otras endpoints para volverler a pedir a tal usuario otra ves su token y tipo (bearer), tiene mucha utilidad para reutilizacion en distintos endpoints por ejemplo verificar su login, su permiso
+- login (POST): ingreso de un usuario a la app a partir de su correo y contraseña
+- register (POST): registro de correo normalizado y contraseña de minimo 8 caracteres
+- token (POST): este endpoint es para proteger otras endpoints para volverler a pedir a tal usuario otra ves su token y tipo (bearer), tiene mucha utilidad para reutilizacion en distintos endpoints por ejemplo verificar su login, su permiso
 
 # Endpoints para desarrolladores y administradores
 
