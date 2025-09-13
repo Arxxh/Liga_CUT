@@ -11,11 +11,26 @@ Este es un proyecto basado en 4 microservicios o mas para un sistema o aplicacio
 registro y acceso para usuarios, generacion de token JWT, Rutas Auth 
 y Rutas para el panel de permisos
 
-- Hasheo de contraseñas: passlib
-- Manejo asincrono
+- Hasheo de contraseñas: passlib: CryptContext
+- Manejo asincrono de la base de datos con Asyncio, nos deja hacer sesiones asincronas
 - tokens: Jose-JWT
 
+# Endpoints funcionales (para usuarios)
 
+-login: ingreso de un usuario a la app a partir de su correo y contraseña
+-register: registro de correo normalizado y contraseña de minimo 8 caracteres
+-token: este endpoint es para proteger otras endpoints para volverler a pedir a tal usuario otra ves su token y tipo (bearer), tiene mucha utilidad para reutilizacion en distintos endpoints por ejemplo verificar su login, su permiso
+
+# Endpoints no funcionales (para desarrolladores y administradores)
+
+-dashboard: requiere una dependencia el cual verifica si un usuario aparece su correo como administrador de permisos para usuarios
+-
+
+# login y register
+
+- <img src="docs/images/bienvenida_app.png" alt="inicio" width="60"> **Inicio**  
+- <img src="docs/images/iniciar_sesion_app.png" alt="inicio" width="60"> **Login**  
+- <img src="docs/images/Crear_cuenta_app.png" alt="inicio" width="60"> **Register** 
 
 
 
