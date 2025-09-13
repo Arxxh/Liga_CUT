@@ -28,9 +28,9 @@ y Rutas para el panel de permisos
 
 # login y register
 
-- <img src="docs/images/bienvenida_app.png" alt="inicio" width="60"> **Inicio**  
-- <img src="docs/images/iniciar_sesion_app.png" alt="inicio" width="60"> **Login**  
-- <img src="docs/images/Crear_cuenta_app.png" alt="inicio" width="60"> **Register** 
+- <img src="docs/images/bienvenida_app.png" alt="inicio"> **Inicio**  
+- <img src="docs/images/iniciar_sesion_app.png" alt="inicio"> **Login**  
+- <img src="docs/images/Crear_cuenta_app.png" alt="inicio"> **Register** 
 
 
 
