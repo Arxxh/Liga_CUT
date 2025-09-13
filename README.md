@@ -25,6 +25,8 @@ y Rutas para el panel de permisos
 
 - dashboard: requiere una dependencia el cual verifica si un usuario aparece su correo como administrador de permisos para usuarios
 
+- bajo contruccion todavia... 
+
 
 # login y register
 
