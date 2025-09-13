@@ -28,6 +28,8 @@ y Rutas para el panel de permisos
 
 # login y register
 
+- esto ya esta funcionando totalmente (token para cada uno de los usuario, contraseñas hasheadas en db y asincrono)
+
 - <img src="docs/images/bienvenida_app.png" alt="inicio"> **Inicio**  
 - <img src="docs/images/iniciar_sesion_app.png" alt="inicio"> **Login**  
 - <img src="docs/images/Crear_cuenta_app.png" alt="inicio"> **Register** 
