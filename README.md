@@ -17,14 +17,14 @@ y Rutas para el panel de permisos
 
 # Endpoints funcionales (para usuarios)
 
--login: ingreso de un usuario a la app a partir de su correo y contraseña
--register: registro de correo normalizado y contraseña de minimo 8 caracteres
--token: este endpoint es para proteger otras endpoints para volverler a pedir a tal usuario otra ves su token y tipo (bearer), tiene mucha utilidad para reutilizacion en distintos endpoints por ejemplo verificar su login, su permiso
+- login: ingreso de un usuario a la app a partir de su correo y contraseña
+- register: registro de correo normalizado y contraseña de minimo 8 caracteres
+- token: este endpoint es para proteger otras endpoints para volverler a pedir a tal usuario otra ves su token y tipo (bearer), tiene mucha utilidad para reutilizacion en distintos endpoints por ejemplo verificar su login, su permiso
 
 # Endpoints no funcionales (para desarrolladores y administradores)
 
--dashboard: requiere una dependencia el cual verifica si un usuario aparece su correo como administrador de permisos para usuarios
--
+- dashboard: requiere una dependencia el cual verifica si un usuario aparece su correo como administrador de permisos para usuarios
+
 
 # login y register
 
