@@ -15,7 +15,7 @@ y Rutas para el panel de permisos
 - Manejo asincrono de la base de datos con Asyncio, nos deja hacer sesiones asincronas
 - tokens: Jose-JWT
 
-# Endpoints funcionales (para usuarios)
+# Endpoints para usuarios
 
 - login: ingreso de un usuario a la app a partir de su correo y contraseña
 - register: registro de correo normalizado y contraseña de minimo 8 caracteres
