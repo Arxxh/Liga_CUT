@@ -1,7 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import register_routers
+from database.sessions import SessionLocal
+from panel.startup_seed import ensure_panel_access_seed
+from dotenv import load_dotenv
+from contextlib import asynccontextmanager
 
+
+load_dotenv()  # Cargar variables de entorno desde el archivo .env
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # === startup ===
+    async with SessionLocal() as db:
+        await ensure_panel_access_seed(db)
+
+    yield  # <- aquí se ejecuta la app mientras corre
+
+    # === shutdown ===
+    # si necesitas limpiar algo, lo pones aquí
+    # ej: cerrar conexiones externas, liberar recursos, etc.
 
 
 app = FastAPI(
