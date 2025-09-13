@@ -2,6 +2,7 @@
 Este es un proyecto basado en 4 microservicios o mas para un sistema o aplicacion web para la gestion de ligas universitarias. actulmente se piensa primero implementar a un nivel local (Cutonala)
 
 # Stack Tecnologico
+- <img src="docs/images//[CITYPNG.COM]HD Python Logo Symbol Transparent PNG - 2000x2000.png" alt="Python" width="60"> **Python** 
 - <img src="docs//images/fastapi-1.svg" alt="FastAPI" width="60"> **Python – FastAPI**  
 - <img src="docs/images/favpng_2b4808d3f42736a2e61232030a423db0.png" alt="PostgreSQL" width="60"> **PostgreSQL** 
 - <img src="docs/images//next-js-logo-black-text-green-background-modern-design.png" alt="Next.js" width="60"> **Next.js**
