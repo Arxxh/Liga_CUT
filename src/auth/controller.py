@@ -1,6 +1,8 @@
 # Liga_CUT/src/auth/controller.py
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
+from auth.dependencies import get_current_user, User
 
 from database.sessions import get_db
 from auth.schemas import UserCreate, UserRead, UserLogin, Token
@@ -50,5 +52,14 @@ async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
 
     access_token = await issue_token_for_user(user)
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.post("/token", response_model=Token)
+async def token(form_data: OAuth2PasswordRequestForm = Depends(),
+                db: AsyncSession = Depends(get_db)):
+    # OAuth2 usa "username": lo tratamos como email
+    user = await authenticate_user(db, form_data.username, form_data.password)
+    access = await issue_token_for_user(user)
+    return {"access_token": access, "token_type": "bearer"}
 
 
